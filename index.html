@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Шақырту - Қос Қуаныш Бірге</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C5A059;
+      --gold-light: #DFBC7E;
+      --gold-dark: #96743A;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .kazakh-pattern-bg {
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23C5A059' fill='none' stroke-width='0.4' opacity='0.25'%3E%3Cpath d='M 60 60 C 45 60 40 45 40 30 C 40 15 50 15 55 30 C 60 45 60 60 55 60 M 60 60 C 75 60 80 45 80 30 C 80 15 70 15 65 30 C 60 45 60 60 65 60'/%3E%3Cpath d='M 60 60 C 45 60 40 75 40 90 C 40 105 50 105 55 90 C 60 75 60 60 55 60 M 60 60 C 75 60 80 75 80 90 C 80 105 70 105 65 90 C 60 75 60 60 65 60'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+    }
+
+    .font-serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .mobile-container {
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+      background: white;
+      position: relative;
+      overflow-x: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.05);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:active {
+      transform: scale(0.98);
+    }
+    
+    .btn-outline-gold {
+      border: 1px solid var(--gold);
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-gold:active {
+      background: var(--gold);
+      color: white;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music (Men Qazaqpin) -->
+  <audio id="bg-music" loop autoplay>
+    <source src="https://cdns.hotplayer.ru/dl/v01/track/mp3/44/22/kurmash-mahjan-men-kazakpin_44222046.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control Floating Button -->
+  <div onclick="toggleMusic()" id="music-btn" class="fixed bottom-4 right-4 z-50 bg-[#C5A059] text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center cursor-pointer animate-bounce">
+    🎵
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="mobile-container kazakh-pattern-bg">
+    
+    <!-- === INVITATION VIEW === -->
+    <div id="view-invitation">
+      
+      <!-- COVER SCREEN -->
+      <div id="cover-screen" class="h-screen w-full flex flex-col items-center justify-center p-6 relative">
+        <div class="absolute inset-4 border border-[#C5A059] opacity-30 pointer-events-none"></div>
+        
+        <!-- Ornaments Corner -->
+        <svg class="absolute top-6 left-6" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        <svg class="absolute top-6 right-6 transform rotate-90" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        <svg class="absolute bottom-6 right-6 transform rotate-180" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        <svg class="absolute bottom-6 left-6 transform -rotate-90" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        
+        <div class="text-center z-10 w-full px-4 animate-fade-in">
+          <!-- Ram Horn -->
+          <svg width="60" height="40" viewBox="0 0 60 40" fill="none" class="mx-auto mb-4"><path d="M 30 35 C 15 35 10 25 10 15 C 10 5 20 5 25 15 C 30 25 30 35 25 35 M 30 35 C 45 35 50 25 50 15 C 50 5 40 5 35 15 C 30 25 30 35 35 35" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 25 15 C 25 18 22 20 20 20 C 18 20 15 18 15 15 M 35 15 C 35 18 38 20 40 20 C 42 20 45 18 45 15" stroke="#C5A059" stroke-width="1" stroke-linecap="round"/></svg>
+          
+          <h3 class="font-serif text-[#96743A] text-sm tracking-[0.3em] uppercase mb-6">Қос қуаныш бірге</h3>
+          
+          <div class="my-8">
+            <h1 class="font-serif text-3xl text-[#96743A] font-bold mb-2">ӘБДІСАДЫҚ</h1>
+            <h2 class="text-[#C5A059] text-sm tracking-widest uppercase mb-6">70 Жас Мерейтойы</h2>
+            
+            <div class="flex items-center justify-center gap-4 my-4 opacity-70">
+              <div class="h-[1px] w-12 bg-[#C5A059]"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-[#C5A059]"></div>
+              <div class="h-[1px] w-12 bg-[#C5A059]"></div>
+            </div>
+            
+            <h1 class="font-serif text-3xl text-[#96743A] font-bold mt-6 mb-2">ОМАР</h1>
+            <h2 class="text-[#C5A059] text-sm tracking-widest uppercase">Сүндет Тойы</h2>
+          </div>
+          
+          <p class="font-serif text-xl text-[#96743A] mb-12 mt-8">17 ҚАЗАН 2026</p>
+          
+          <button onclick="openInvitation()" class="btn-gold w-full py-4 px-8 rounded text-sm font-semibold shadow-lg shadow-[#c5a05940]">
+            Шақыртуды ашу
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT SCREEN (Hidden initially) -->
+      <div id="main-content" class="hidden min-h-screen w-full py-12 px-6 flex flex-col items-center relative pb-32">
+        <svg class="absolute top-4 left-4" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        <svg class="absolute top-4 right-4 transform rotate-90" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M 2 38 C 2 20 20 2 38 2" stroke="#C5A059" stroke-width="1" opacity="0.8"/><path d="M 8 38 C 8 25 25 8 38 8" stroke="#C5A059" stroke-width="1" opacity="0.5"/><path d="M 2 38 L 2 2 L 38 2" stroke="#C5A059" stroke-width="0.5" opacity="0.3"/><circle cx="6" cy="6" r="1.5" fill="#C5A059" /></svg>
+        
+        <!-- Invitation Text -->
+        <div class="text-center mt-12 mb-16 w-full max-w-sm animate-fade-in">
+          <svg width="60" height="40" viewBox="0 0 60 40" fill="none" class="mx-auto mb-4"><path d="M 30 35 C 15 35 10 25 10 15 C 10 5 20 5 25 15 C 30 25 30 35 25 35 M 30 35 C 45 35 50 25 50 15 C 50 5 40 5 35 15 C 30 25 30 35 35 35" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 25 15 C 25 18 22 20 20 20 C 18 20 15 18 15 15 M 35 15 C 35 18 38 20 40 20 C 42 20 45 18 45 15" stroke="#C5A059" stroke-width="1" stroke-linecap="round"/></svg>
+          <p class="text-[#96743A] font-serif text-lg leading-relaxed mb-6">Ардақты ағайын-туыс, құда-жекжат, дос-жаран!</p>
+          <p class="text-[#555] text-sm leading-loose mb-6">Сіздерді Әбдісадықтың 70 жас мерейтойы мен Омардың сүндет тойына арналған қос қуанышымызға шақырамыз!</p>
+          <p class="text-[#555] text-sm leading-loose">Ақ дастарханымыздың қадірлі қонағы болып, қуанышымызға ортақ болыңыздар!</p>
+          <p class="text-[#96743A] font-serif font-bold text-md mt-6">Той иелері: Әбдісадық-Нұрғайша және балалары</p>
+          <svg width="200" height="24" viewBox="0 0 200 24" fill="none" class="mx-auto my-6"><path d="M 10 12 L 80 12 M 120 12 L 190 12" stroke="#C5A059" stroke-width="0.5" /><path d="M 100 4 C 95 4 92 8 92 12 C 92 16 95 20 100 20 C 105 20 108 16 108 12 C 108 8 105 4 100 4 Z" stroke="#C5A059" stroke-width="1" fill="none"/><path d="M 100 8 C 98 8 96 10 96 12 C 96 14 98 16 100 16 C 102 16 104 14 104 12 C 104 10 102 8 100 8 Z" fill="#C5A059"/></svg>
+        </div>
+
+        <!-- Event Info -->
+        <div class="w-full max-w-sm mb-16 bg-white border border-[#C5A059] p-8 text-center shadow-[0_10px_30px_rgba(197,160,89,0.1)] relative animate-fade-in">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-[#C5A059] text-xs tracking-widest uppercase">Той мәліметтері</div>
+          <h3 class="font-serif text-2xl text-[#96743A] mb-2">17.10.2026, сағат 17:00</h3>
+          <p class="text-gray-600 mb-6 font-serif text-xl italic">«Ай Көркем» мейрамханасы</p>
+          <p class="text-gray-500 text-sm mb-8 uppercase tracking-widest">Бесағаш</p>
+          <a href="https://2gis.kz/almaty/geo/70000001064395301/77.047412,43.306826" target="_blank" class="btn-outline-gold inline-block w-full py-3 rounded text-xs font-semibold">Картадан көру</a>
+        </div>
+
+        <!-- Calendar (Already Open & Showing Time) -->
+        <div class="w-full flex flex-col items-center animate-fade-in">
+          <div class="w-full max-w-[280px] relative">
+            <div class="w-full bg-white border border-[#C5A059] shadow-md pt-6 pb-4 px-4 text-center">
+              <h3 class="font-serif text-[#96743A] text-xl mb-4 font-bold tracking-widest uppercase">Қазан 2026</h3>
+              <div class="grid grid-cols-7 gap-y-3 gap-x-1 text-[10px] text-[#C5A059] uppercase font-bold mb-2">
+                <div>Дс</div><div>Сс</div><div>Ср</div><div>Бс</div><div>Жм</div><div>Сн</div><div>Же</div>
+              </div>
+              <div id="calendar-grid" class="grid grid-cols-7 gap-y-3 gap-x-1 text-sm text-gray-700 font-serif">
+                <!-- Generated by JS -->
+              </div>
+              <div class="mt-6 text-[#96743A] font-serif text-lg tracking-widest font-semibold">
+                17.10.2026 — 17:00
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RSVP Section -->
+        <div id="rsvp-section" class="w-full mt-16">
+          <svg width="200" height="24" viewBox="0 0 200 24" fill="none" class="mx-auto my-6"><path d="M 10 12 L 80 12 M 120 12 L 190 12" stroke="#C5A059" stroke-width="0.5" /><path d="M 100 4 C 95 4 92 8 92 12 C 92 16 95 20 100 20 C 105 20 108 16 108 12 C 108 8 105 4 100 4 Z" stroke="#C5A059" stroke-width="1" fill="none"/><path d="M 100 8 C 98 8 96 10 96 12 C 96 14 98 16 100 16 C 102 16 104 14 104 12 C 104 10 102 8 100 8 Z" fill="#C5A059"/></svg>
+          
+          <div class="w-full max-w-sm mx-auto p-6 bg-white border border-[#C5A059] shadow-[0_4px_20px_rgba(197,160,89,0.05)]">
+            <h2 class="text-center font-serif text-2xl text-[#96743A] mb-8">Тойға келесіз бе?</h2>
+            
+            <!-- Step 1: Buttons -->
+            <div id="rsvp-step-1" class="flex flex-col gap-4">
+              <button onclick="setRsvpStep(2)" class="btn-gold w-full py-4 rounded text-sm font-bold tracking-wider">Келемін</button>
+              <button onclick="setRsvpStep(3)" class="btn-outline-gold w-full py-4 rounded text-sm font-bold tracking-wider bg-white">Келе алмаймын</button>
+            </div>
+
+            <!-- Step 2: Attending -->
+            <div id="rsvp-step-2" class="hidden flex-col gap-5 animate-fade-in">
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-[#96743A] mb-2 text-center">Аты-жөніңіз</label>
+                <input type="text" id="guest-name-yes" class="w-full border-b border-[#C5A059] bg-transparent pb-2 text-gray-800 text-lg outline-none focus:border-[#96743A] transition-colors rounded-none text-center font-serif" placeholder="Есіміңізді жазыңыз">
+              </div>
+              <div class="mt-4">
+                <label class="block text-xs uppercase tracking-widest text-[#96743A] mb-4 text-center">Неше адам болып келесіз?</label>
+                <div class="grid grid-cols-5 gap-2" id="guest-count-grid">
+                  <!-- Generated by JS -->
+                </div>
+              </div>
+              <button onclick="submitRsvp(true)" id="btn-submit-yes" class="btn-gold w-full py-4 rounded text-sm font-bold tracking-wider mt-6">Жауапты жіберу</button>
+              <button onclick="setRsvpStep(1)" class="text-[#C5A059] text-xs uppercase tracking-widest mt-2 underline text-center">Артқа қайту</button>
+            </div>
+
+            <!-- Step 3: Not Attending -->
+            <div id="rsvp-step-3" class="hidden flex-col gap-6 animate-fade-in">
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-[#96743A] mb-2 text-center">Аты-жөніңіз</label>
+                <input type="text" id="guest-name-no" class="w-full border-b border-[#C5A059] bg-transparent pb-2 text-gray-800 text-lg outline-none focus:border-[#96743A] transition-colors rounded-none text-center font-serif" placeholder="Есіміңізді жазыңыз">
+              </div>
+              <button onclick="submitRsvp(false)" id="btn-submit-no" class="btn-outline-gold bg-white w-full py-4 rounded text-sm font-bold tracking-wider mt-2">Жауапты жіберу</button>
+              <button onclick="setRsvpStep(1)" class="text-[#C5A059] text-xs uppercase tracking-widest mt-2 underline text-center">Артқа қайту</button>
+            </div>
+
+            <!-- Step 4: Success -->
+            <div id="rsvp-step-4" class="hidden text-center p-4 animate-fade-in">
+              <h3 class="font-serif text-xl text-[#96743A] mb-2">Жауабыңыз қабылданды!</h3>
+              <p class="text-gray-500 text-sm">Уақыт бөлгеніңізге рахмет.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="w-full mt-20 mb-12">
+          <div class="w-full max-w-[320px] mx-auto text-center">
+            <div class="grid grid-cols-4 gap-2">
+              <div class="bg-white border border-[#C5A059] flex flex-col items-center justify-center p-3">
+                <span id="cd-days" class="font-serif text-2xl text-[#96743A] font-bold">00</span>
+                <span class="text-[9px] uppercase tracking-widest text-[#C5A059] mt-1">Күн</span>
+              </div>
+              <div class="bg-white border border-[#C5A059] flex flex-col items-center justify-center p-3">
+                <span id="cd-hours" class="font-serif text-2xl text-[#96743A] font-bold">00</span>
+                <span class="text-[9px] uppercase tracking-widest text-[#C5A059] mt-1">Сағат</span>
+              </div>
+              <div class="bg-white border border-[#C5A059] flex flex-col items-center justify-center p-3">
+                <span id="cd-minutes" class="font-serif text-2xl text-[#96743A] font-bold">00</span>
+                <span class="text-[9px] uppercase tracking-widest text-[#C5A059] mt-1">Минут</span>
+              </div>
+              <div class="bg-white border border-[#C5A059] flex flex-col items-center justify-center p-3">
+                <span id="cd-seconds" class="font-serif text-2xl text-[#96743A] font-bold">00</span>
+                <span class="text-[9px] uppercase tracking-widest text-[#C5A059] mt-1">Секунд</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- === ADMIN VIEW === -->
+    <div id="view-admin" class="hidden min-h-screen w-full bg-gray-50 pb-20">
+      
+      <!-- Login Screen -->
+      <div id="admin-login" class="min-h-screen w-full flex flex-col items-center justify-center p-6 bg-white">
+        <div class="border border-[#C5A059] p-8 text-center max-w-sm w-full">
+          <svg width="60" height="40" viewBox="0 0 60 40" fill="none" class="mx-auto mb-4"><path d="M 30 35 C 15 35 10 25 10 15 C 10 5 20 5 25 15 C 30 25 30 35 25 35 M 30 35 C 45 35 50 25 50 15 C 50 5 40 5 35 15 C 30 25 30 35 35 35" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 25 15 C 25 18 22 20 20 20 C 18 20 15 18 15 15 M 35 15 C 35 18 38 20 40 20 C 42 20 45 18 45 15" stroke="#C5A059" stroke-width="1" stroke-linecap="round"/></svg>
+          <h2 class="font-serif text-xl text-[#96743A] mb-6">Админ панель</h2>
+          <div class="flex flex-col gap-4">
+            <input type="password" id="admin-pin" placeholder="Құпия сөз" class="border-b border-[#C5A059] p-2 text-center outline-none bg-transparent">
+            <button onclick="loginAdmin()" class="btn-gold py-3 rounded text-sm mt-4">Кіру</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Screen -->
+      <div id="admin-dashboard" class="hidden">
+        <div class="bg-[#96743A] text-white p-4 text-center sticky top-0 z-50 shadow-md">
+          <h1 class="font-serif text-lg tracking-widest uppercase">Қонақтар тізімі</h1>
+        </div>
+        <div class="p-4">
+          <!-- Stats -->
+          <div class="grid grid-cols-2 gap-3 mb-6">
+            <div class="bg-white p-4 rounded shadow-sm border border-gray-100 text-center">
+              <div id="stat-total" class="text-2xl text-[#96743A] font-bold">0</div>
+              <div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Барлығы</div>
+            </div>
+            <div class="bg-white p-4 rounded shadow-sm border border-gray-100 text-center">
+              <div id="stat-yes" class="text-2xl text-green-600 font-bold">0</div>
+              <div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Келемін деді</div>
+            </div>
+            <div class="bg-white p-4 rounded shadow-sm border border-gray-100 text-center">
+              <div id="stat-no" class="text-2xl text-red-500 font-bold">0</div>
+              <div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Келе алмайды</div>
+            </div>
+            <div class="bg-white p-4 rounded shadow-sm border border-gray-100 text-center bg-[#fdfaf5]">
+              <div id="stat-people" class="text-2xl text-[#C5A059] font-bold">0</div>
+              <div class="text-[10px] text-gray-500 uppercase tracking-wide mt-1">Адам Саны</div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="bg-white p-3 rounded shadow-sm border border-gray-100 mb-4">
+            <input type="text" id="admin-search" placeholder="Аты-жөні бойынша іздеу..." class="w-full bg-gray-100 p-2 rounded text-sm outline-none mb-3" oninput="renderTable()">
+            <div class="flex bg-gray-100 p-1 rounded">
+              <button onclick="setFilter('ALL')" id="filter-ALL" class="flex-1 text-[11px] py-1.5 rounded uppercase font-bold transition-colors bg-white shadow text-[#96743A]">Барлығы</button>
+              <button onclick="setFilter('ATTENDING')" id="filter-ATTENDING" class="flex-1 text-[11px] py-1.5 rounded uppercase font-bold transition-colors text-gray-500">Келетіндер</button>
+              <button onclick="setFilter('NOT_ATTENDING')" id="filter-NOT_ATTENDING" class="flex-1 text-[11px] py-1.5 rounded uppercase font-bold transition-colors text-gray-500">Келмейтіндер</button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="bg-white shadow-sm border border-gray-100 rounded overflow-hidden">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-gray-50 text-gray-500 uppercase border-b border-gray-100">
+                <tr>
+                  <th class="p-3 font-semibold">Аты-жөні</th>
+                  <th class="p-3 font-semibold text-center">Жауабы</th>
+                  <th class="p-3 font-semibold text-center">Саны</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body" class="divide-y divide-gray-50">
+                <!-- JS Populated -->
+              </tbody>
+            </table>
+            <div id="admin-empty" class="hidden p-8 text-center text-gray-400 text-sm">Қонақтар табылмады</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FIREBASE & LOGIC SCRIPT -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+    import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+    // Firebase Setup
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    
+    let db, auth, appId;
+    try {
+        const app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+        appId = typeof __app_id !== 'undefined' ? __app_id : 'guest-list-2026';
+
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+        initAuth();
+    } catch(e) { console.log("Firebase not configured externally yet."); }
+
+    // State Variables
+    window.selectedGuestCount = 1;
+    let isAdmin = window.location.search.includes('admin=true');
+    let guestsData = [];
+    let currentFilter = 'ALL';
+
+    // --- MUSIC CONTROL ---
+    let isPlaying = false;
+    window.toggleMusic = () => {
+        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('music-btn');
+        if (isPlaying) {
+            music.pause();
+            btn.innerText = "🔇";
+            isPlaying = false;
+        } else {
+            music.play().catch(() => {});
+            btn.innerText = "🎵";
+            isPlaying = true;
+        }
+    };
+
+    // --- INIT ---
+    window.onload = () => {
+        if (isAdmin) {
+            document.getElementById('view-invitation').classList.add('hidden');
+            document.getElementById('view-admin').classList.remove('hidden');
+        }
+        buildCalendar();
+        buildGuestCounter();
+        startCountdown();
+
+        // Try playing music automatically on first interaction
+        document.body.addEventListener('click', () => {
+            const music = document.getElementById('bg-music');
+            if(!isPlaying && music.paused) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    document.getElementById('music-btn').innerText = "🎵";
+                }).catch(() => {});
+            }
+        }, { once: true });
+    };
+
+    // --- INVITATION LOGIC ---
+    window.openInvitation = () => {
+        document.getElementById('cover-screen').classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+        document.getElementById('main-content').classList.add('flex');
+        window.scrollTo(0,0);
+        
+        // Ensure music plays
+        const music = document.getElementById('bg-music');
+        music.play().then(() => { isPlaying = true; }).catch(()=>{});
+    };
+
+    function buildCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        let html = '';
+        for(let i=0; i<3; i++) html += '<div></div>';
+        for(let i=1; i<=31; i++) {
+            if(i === 17) {
+                html += `<div class="flex justify-center items-center h-8 relative"><div class="absolute inset-0 bg-[#C5A059] text-white rounded-full flex items-center justify-center shadow-md scale-110 z-10"><span class="font-bold">${i}</span></div></div>`;
+            } else {
+                html += `<div class="flex justify-center items-center h-8 relative"><span>${i}</span></div>`;
+            }
+        }
+        grid.innerHTML = html;
+    }
+
+    // --- RSVP LOGIC ---
+    window.setRsvpStep = (step) => {
+        document.getElementById('rsvp-step-1').classList.toggle('hidden', step !== 1);
+        document.getElementById('rsvp-step-2').classList.toggle('hidden', step !== 2);
+        document.getElementById('rsvp-step-3').classList.toggle('hidden', step !== 3);
+        document.getElementById('rsvp-step-4').classList.toggle('hidden', step !== 4);
+    };
+
+    function buildGuestCounter() {
+        const grid = document.getElementById('guest-count-grid');
+        let html = '';
+        for(let i=1; i<=10; i++) {
+            let text = i === 10 ? '10+' : i;
+            html += `<button onclick="selectGuestCount(${i})" id="gc-btn-${i}" class="py-2 text-sm border transition-colors rounded-sm ${i === 1 ? 'bg-[#C5A059] text-white border-[#C5A059]' : 'border-[#E5D4B3] text-gray-600 bg-white'}">${text}</button>`;
+        }
+        grid.innerHTML = html;
+    }
+
+    window.selectGuestCount = (num) => {
+        window.selectedGuestCount = num;
+        for(let i=1; i<=10; i++) {
+            const btn = document.getElementById(`gc-btn-${i}`);
+            if(i === num) {
+                btn.className = "py-2 text-sm border transition-colors rounded-sm bg-[#C5A059] text-white border-[#C5A059]";
+            } else {
+                btn.className = "py-2 text-sm border transition-colors rounded-sm border-[#E5D4B3] text-gray-600 bg-white";
+            }
+        }
+    };
+
+    window.submitRsvp = async (attending) => {
+        const nameInput = attending ? document.getElementById('guest-name-yes') : document.getElementById('guest-name-no');
+        const name = nameInput.value.trim();
+        const btn = attending ? document.getElementById('btn-submit-yes') : document.getElementById('btn-submit-no');
+        
+        if(!name) return alert("Аты-жөніңізді енгізіңіз");
+        
+        btn.innerText = "Жіберілуде...";
+        btn.disabled = true;
+
+        try {
+            if(db && auth && auth.currentUser) {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'guests'), {
+                    name: name,
+                    attendance: attending,
+                    guestCount: attending ? window.selectedGuestCount : 0,
+                    createdAt: Date.now()
+                });
+            }
+            window.setRsvpStep(4);
+        } catch(e) {
+            console.error(e);
+            alert("Қателік кетті, қайта көріңіз.");
+            btn.innerText = "Жауапты жіберу";
+            btn.disabled = false;
+        }
+    };
+
+    // --- COUNTDOWN LOGIC ---
+    function startCountdown() {
+        const targetDate = new Date("2026-10-17T17:00:00").getTime();
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('cd-days').innerText = days < 10 ? '0'+days : days;
+                document.getElementById('cd-hours').innerText = hours < 10 ? '0'+hours : hours;
+                document.getElementById('cd-minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+                document.getElementById('cd-seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+            }
+        }, 1000);
+    }
+
+    // --- ADMIN LOGIC ---
+    window.loginAdmin = () => {
+        const pin = document.getElementById('admin-pin').value;
+        if(pin === '1234') {
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('admin-dashboard').classList.remove('hidden');
+            listenToDatabase();
+        } else {
+            alert('Құпия сөз қате');
+        }
+    };
+
+    function listenToDatabase() {
+        if(!db) { alert("Дерекқор қосылмаған."); return; }
+        
+        const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'guests'));
+        onSnapshot(q, (snapshot) => {
+            guestsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            guestsData.sort((a, b) => b.createdAt - a.createdAt);
+            window.renderTable();
+        }, (error) => console.error("Admin error:", error));
+    }
+
+    window.setFilter = (f) => {
+        currentFilter = f;
+        const btnAll = document.getElementById('filter-ALL');
+        const btnAttending = document.getElementById('filter-ATTENDING');
+        const btnNot = document.getElementById('filter-NOT_ATTENDING');
+        
+        [btnAll, btnAttending, btnNot].forEach(btn => {
+            btn.className = "flex-1 text-[11px] py-1.5 rounded uppercase font-bold transition-colors text-gray-500";
+        });
+        
+        document.getElementById('filter-' + f).className = "flex-1 text-[11px] py-1.5 rounded uppercase font-bold transition-colors bg-white shadow text-[#96743A]";
+        window.renderTable();
+    };
+
+    window.renderTable = () => {
+        const searchVal = document.getElementById('admin-search').value.toLowerCase();
+        
+        const filtered = guestsData.filter(g => {
+            const matchFilter = currentFilter === 'ALL' ? true : currentFilter === 'ATTENDING' ? g.attendance : !g.attendance;
+            const matchSearch = g.name.toLowerCase().includes(searchVal);
+            return matchFilter && matchSearch;
+        });
+
+        const total = guestsData.length;
+        const yes = guestsData.filter(g => g.attendance).length;
+        const no = guestsData.filter(g => !g.attendance).length;
+        const people = guestsData.filter(g => g.attendance).reduce((acc, curr) => acc + (curr.guestCount || 0), 0);
+
+        document.getElementById('stat-total').innerText = total;
+        document.getElementById('stat-yes').innerText = yes;
+        document.getElementById('stat-no').innerText = no;
+        document.getElementById('stat-people').innerText = people;
+
+        const tbody = document.getElementById('admin-table-body');
+        const emptyMsg = document.getElementById('admin-empty');
+        
+        if(filtered.length === 0) {
+            tbody.innerHTML = '';
+            emptyMsg.classList.remove('hidden');
+        } else {
+            emptyMsg.classList.add('hidden');
+            tbody.innerHTML = filtered.map(g => {
+                const d = new Date(g.createdAt);
+                const time = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+                const status = g.attendance 
+                    ? '<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-[10px] font-bold">Келеді</span>'
+                    : '<span class="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold">Келмейді</span>';
+                
+                return `
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="p-3">
+                    <div class="font-semibold text-gray-800">${g.name}</div>
+                    <div class="text-[9px] text-gray-400 mt-0.5">${time}</div>
+                  </td>
+                  <td class="p-3 text-center">${status}</td>
+                  <td class="p-3 text-center font-bold text-gray-700">${g.attendance ? g.guestCount : '-'}</td>
+                </tr>`;
+            }).join('');
+        }
+    };
+  </script>
+</body>
+</html>
+
